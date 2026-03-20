@@ -3,1079 +3,907 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Debate Infographic: Israel vs Palestine</title>
+<title>Debate: Israel vs Palestine — Crowd Verdict</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap');
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --for-primary: #1a56db;
-    --for-light: #e8effc;
-    --for-mid: #3b82f6;
-    --for-gradient: linear-gradient(135deg, #1a56db, #3b82f6);
-    --against-primary: #dc2626;
-    --against-light: #fce8e8;
-    --against-mid: #ef4444;
-    --against-gradient: linear-gradient(135deg, #dc2626, #ef4444);
-    --bg-dark: #0f172a;
-    --bg-card: #1e293b;
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --border: #334155;
-    --accent-gold: #f59e0b;
-    --accent-emerald: #10b981;
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface2: #263348;
+    --for: #3b82f6;
+    --for-dim: rgba(59,130,246,0.15);
+    --against: #ef4444;
+    --against-dim: rgba(239,68,68,0.15);
+    --gold: #f59e0b;
+    --gold-dim: rgba(245,158,11,0.15);
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: rgba(255,255,255,0.07);
   }
+
+  html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg-dark);
-    color: var(--text-primary);
-    line-height: 1.6;
-    overflow-x: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
   }
 
-  /* Hero Section */
+  /* ── HERO ── */
   .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    background: linear-gradient(135deg, #0f172a 0%, #1a2540 50%, #0f172a 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 72px 24px 56px;
     text-align: center;
-    padding: 2rem;
+    position: relative;
     overflow: hidden;
   }
-
   .hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(ellipse at 20% 50%, rgba(26, 86, 219, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 50%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 0%, rgba(245, 158, 11, 0.08) 0%, transparent 40%);
-    z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,130,246,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 80% 60% at 50% 100%, rgba(239,68,68,0.06) 0%, transparent 70%);
+    pointer-events: none;
   }
-
-  .hero > * { position: relative; z-index: 1; }
-
   .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1.25rem;
-    background: rgba(245, 158, 11, 0.1);
-    border: 1px solid rgba(245, 158, 11, 0.3);
+    display: inline-block;
+    background: var(--gold-dim);
+    border: 1px solid rgba(245,158,11,0.3);
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 14px;
     border-radius: 100px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent-gold);
-    margin-bottom: 2rem;
-    animation: fadeInDown 0.8s ease;
+    margin-bottom: 20px;
   }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 8vw, 6.5rem);
-    font-weight: 900;
-    line-height: 1.05;
-    margin-bottom: 1.5rem;
-    animation: fadeInUp 1s ease;
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-
-  .hero-title .vs {
-    display: block;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.3em;
-    font-weight: 300;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin: 0.5rem 0;
-  }
-
-  .hero-title .side-for { color: var(--for-mid); }
-  .hero-title .side-against { color: var(--against-mid); }
-
-  .hero-subtitle {
-    font-size: 1.15rem;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin-bottom: 3rem;
-    animation: fadeInUp 1.2s ease;
-  }
-
   .hero-meta {
     display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
     justify-content: center;
-    animation: fadeInUp 1.4s ease;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 24px;
+    font-size: 0.85rem;
+    color: var(--muted);
   }
+  .hero-meta span { display: flex; align-items: center; gap: 6px; }
+  .dot-for { width: 8px; height: 8px; border-radius: 50%; background: var(--for); flex-shrink: 0; }
+  .dot-against { width: 8px; height: 8px; border-radius: 50%; background: var(--against); flex-shrink: 0; }
 
-  .meta-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-  }
+  /* ── CONTAINER ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 
-  .meta-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-  }
-
-  .meta-value {
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-
-  .scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: bounce 2s infinite;
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .scroll-indicator svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  /* Score Section */
+  /* ── SCORE SECTION ── */
   .score-section {
-    padding: 6rem 2rem;
+    padding: 64px 24px;
     text-align: center;
-    position: relative;
   }
-
-  .score-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 50%, rgba(220, 38, 38, 0.06) 0%, transparent 60%);
-  }
-
-  .section-label {
-    font-size: 0.75rem;
+  .score-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--accent-gold);
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    position: relative;
+    color: var(--muted);
+    margin-bottom: 32px;
   }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
+  .gauge-wrap {
+    position: relative;
+    width: 280px;
+    height: 160px;
+    margin: 0 auto 32px;
+  }
+  .gauge-svg { width: 100%; height: 100%; overflow: visible; }
+  .gauge-track {
+    fill: none;
+    stroke: var(--surface2);
+    stroke-width: 18;
+    stroke-linecap: round;
+  }
+  .gauge-fill-against {
+    fill: none;
+    stroke: var(--against);
+    stroke-width: 18;
+    stroke-linecap: butt;
+    transition: stroke-dashoffset 2s cubic-bezier(.25,.46,.45,.94);
+  }
+  .gauge-fill-for {
+    fill: none;
+    stroke: var(--for);
+    stroke-width: 18;
+    stroke-linecap: butt;
+    transition: stroke-dashoffset 2s cubic-bezier(.25,.46,.45,.94) 0.1s;
+  }
+  .gauge-needle {
+    transform-origin: 140px 130px;
+    transition: transform 2s cubic-bezier(.25,.46,.45,.94);
+  }
+  .gauge-center-text {
+    font-size: 2.6rem;
     font-weight: 800;
-    margin-bottom: 3rem;
-    position: relative;
+    fill: var(--text);
+    dominant-baseline: middle;
+    text-anchor: middle;
   }
-
-  .gauge-container {
-    max-width: 700px;
-    margin: 0 auto 3rem;
-    position: relative;
+  .gauge-sub-text {
+    font-size: 0.75rem;
+    fill: var(--muted);
+    dominant-baseline: middle;
+    text-anchor: middle;
   }
-
-  .gauge-svg {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    display: block;
-  }
-
-  .gauge-score {
-    font-family: 'Playfair Display', serif;
-    font-size: 5rem;
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 0.5rem;
-    position: relative;
-  }
-
-  .gauge-label {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-  }
-
-  .gauge-bar-container {
-    max-width: 600px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .gauge-bar-bg {
-    height: 12px;
-    border-radius: 6px;
-    background: var(--bg-card);
-    overflow: hidden;
-    position: relative;
-    border: 1px solid var(--border);
-  }
-
-  .gauge-bar-fill {
-    height: 100%;
-    border-radius: 6px;
-    transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-  }
-
-  .gauge-bar-labels {
+  .gauge-labels {
     display: flex;
     justify-content: space-between;
-    margin-top: 0.75rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
-
-  .gauge-bar-labels .for-label { color: var(--for-mid); }
-  .gauge-bar-labels .against-label { color: var(--against-mid); }
-
-  .gauge-marker {
-    position: absolute;
-    top: -8px;
-    width: 4px;
-    height: 28px;
-    background: white;
-    border-radius: 2px;
-    box-shadow: 0 0 10px rgba(255,255,255,0.5);
-    z-index: 2;
-    transition: left 2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Verdict Card */
-  .verdict-card {
-    max-width: 800px;
+    width: 280px;
     margin: 0 auto;
-    padding: 2.5rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    text-align: left;
-    position: relative;
-  }
-
-  .verdict-card h3 {
-    font-size: 1.25rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0 8px;
   }
-
-  .verdict-card p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.8;
-  }
-
-  /* Questions Section */
-  .questions-section {
-    padding: 4rem 2rem 6rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .questions-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .question-block {
-    margin-bottom: 5rem;
-    animation: fadeIn 0.6s ease;
-  }
-
-  .question-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    background: rgba(245, 158, 11, 0.15);
-    color: var(--accent-gold);
-    font-weight: 800;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .question-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    line-height: 1.4;
-  }
-
-  /* Card row label */
-  .card-row-label {
+  .gauge-labels .lbl-left { color: var(--against); }
+  .gauge-labels .lbl-right { color: var(--for); }
+  .verdict-banner {
     display: inline-block;
-    font-size: 0.7rem;
+    margin-top: 28px;
+    background: var(--against-dim);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: var(--against);
+    font-size: 1rem;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    padding: 0.25rem 0.75rem;
+    padding: 10px 28px;
     border-radius: 100px;
-    margin-bottom: 0.6rem;
+    letter-spacing: 0.02em;
   }
 
-  .card-row-label.for-r1 {
-    background: rgba(59, 130, 246, 0.15);
-    color: var(--for-mid);
-    border: 1px solid rgba(59, 130, 246, 0.3);
-  }
-
-  .card-row-label.against-r1 {
-    background: rgba(239, 68, 68, 0.15);
-    color: var(--against-mid);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-  }
-
-  .card-row-label.for-r2 {
-    background: rgba(59, 130, 246, 0.08);
-    color: #7aa8e8;
-    border: 1px solid rgba(59, 130, 246, 0.2);
-  }
-
-  .card-row-label.against-r2 {
-    background: rgba(239, 68, 68, 0.08);
-    color: #e88080;
-    border: 1px solid rgba(239, 68, 68, 0.2);
-  }
-
-  /* Stance cards — full width */
-  .stance-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    margin-bottom: 1rem;
-  }
-
-  .stance-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-  }
-
-  .stance-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-  }
-
-  .stance-card.for-card::before { background: var(--for-gradient); }
-  .stance-card.against-card::before { background: var(--against-gradient); }
-
-  /* Rebuttal cards — slightly muted / indented */
-  .stance-card.for-rebuttal {
-    margin-left: 1.5rem;
-    background: rgba(30, 41, 59, 0.7);
-    border-color: rgba(59, 130, 246, 0.25);
-  }
-
-  .stance-card.for-rebuttal::before { background: linear-gradient(135deg, #1a56db80, #3b82f680); }
-
-  .stance-card.against-rebuttal {
-    margin-left: 1.5rem;
-    background: rgba(30, 41, 59, 0.7);
-    border-color: rgba(239, 68, 68, 0.25);
-  }
-
-  .stance-card.against-rebuttal::before { background: linear-gradient(135deg, #dc262680, #ef444480); }
-
-  .stance-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+  /* ── SECTION HEADING ── */
+  .section-heading {
+    font-size: 0.72rem;
     font-weight: 700;
-    font-size: 0.85rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .stance-header.for { color: var(--for-mid); }
-  .stance-header.against { color: var(--against-mid); }
-  .stance-header.for-muted { color: #7aa8e8; }
-  .stance-header.against-muted { color: #e88080; }
-
-  .stance-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-  }
-
-  .stance-dot.for { background: var(--for-mid); }
-  .stance-dot.against { background: var(--against-mid); }
-  .stance-dot.for-muted { background: #7aa8e8; }
-  .stance-dot.against-muted { background: #e88080; }
-
-  .stance-content {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.75;
-  }
-
-  .round-separator {
+    color: var(--muted);
+    margin-bottom: 24px;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin: 1.75rem 0 1.25rem;
+    gap: 12px;
   }
-
-  .round-separator-line {
+  .section-heading::after {
+    content: '';
     flex: 1;
     height: 1px;
     background: var(--border);
   }
 
-  .round-separator-text {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--text-muted);
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  /* Key Insights */
-  .insights-section {
-    padding: 4rem 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
+  /* ── INSIGHTS GRID ── */
+  .insights-section { padding: 0 24px 64px; }
   .insights-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
   }
-
-  @media (max-width: 768px) {
-    .insights-grid { grid-template-columns: 1fr; }
-  }
-
   .insight-card {
-    padding: 1.5rem;
-    border-radius: 12px;
+    background: var(--surface);
     border: 1px solid var(--border);
-    background: var(--bg-card);
+    border-radius: 14px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
   }
-
-  .insight-card h4 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .insight-card p {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
+  .insight-card:hover { transform: translateY(-2px); }
+  .insight-card.for-card { border-top: 3px solid var(--for); }
+  .insight-card.against-card { border-top: 3px solid var(--against); }
+  .insight-card.gold-card { border-top: 3px solid var(--gold); }
   .insight-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .insight-card h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .for-card h3 { color: var(--for); }
+  .against-card h3 { color: var(--against); }
+  .gold-card h3 { color: var(--gold); }
+  .insight-card p {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .insight-card strong { color: var(--text); }
+
+  /* ── QUESTIONS ── */
+  .questions-section { padding: 0 24px 80px; }
+  .question-block {
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .question-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .question-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .q-number {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.75rem;
-    flex-shrink: 0;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+  .question-header h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .cards-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 680px) {
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+  .debate-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: border-color 0.2s;
+  }
+  .debate-card.for-card-main { border-left: 3px solid var(--for); }
+  .debate-card.against-card-main { border-left: 3px solid var(--against); }
+  .debate-card.for-rebuttal {
+    border-left: 3px solid rgba(59,130,246,0.45);
+    background: rgba(30,41,59,0.7);
+  }
+  .debate-card.against-rebuttal {
+    border-left: 3px solid rgba(239,68,68,0.45);
+    background: rgba(30,41,59,0.7);
+  }
+  .card-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .pill-for {
+    background: var(--for-dim);
+    color: var(--for);
+    border: 1px solid rgba(59,130,246,0.25);
+  }
+  .pill-against {
+    background: var(--against-dim);
+    color: var(--against);
+    border: 1px solid rgba(239,68,68,0.25);
+  }
+  .pill-for-r {
+    background: rgba(59,130,246,0.07);
+    color: rgba(59,130,246,0.7);
+    border: 1px solid rgba(59,130,246,0.15);
+  }
+  .pill-against-r {
+    background: rgba(239,68,68,0.07);
+    color: rgba(239,68,68,0.7);
+    border: 1px solid rgba(239,68,68,0.15);
+  }
+  .debate-card p {
+    font-size: 0.855rem;
+    color: var(--muted);
+    line-height: 1.68;
   }
 
-  .insight-icon.for { background: rgba(59, 130, 246, 0.15); color: var(--for-mid); }
-  .insight-icon.against { background: rgba(239, 68, 68, 0.15); color: var(--against-mid); }
-  .insight-icon.neutral { background: rgba(245, 158, 11, 0.15); color: var(--accent-gold); }
+  /* ── VERDICT DETAIL ── */
+  .verdict-section { padding: 0 24px 80px; }
+  .verdict-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 20px;
+  }
+  .verdict-card h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .verdict-card.for-v h3 { color: var(--for); }
+  .verdict-card.against-v h3 { color: var(--against); }
+  .verdict-card.neutral-v h3 { color: var(--gold); }
+  .verdict-card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .verdict-card p + p { margin-top: 12px; }
 
-  /* Footer */
-  .footer {
+  /* ── SCORE BAR ── */
+  .score-bar-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+  }
+  .score-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .score-bar-labels .lbl-l { color: var(--against); }
+  .score-bar-labels .lbl-r { color: var(--for); }
+  .score-bar-track {
+    height: 12px;
+    background: var(--surface2);
+    border-radius: 100px;
+    overflow: hidden;
+    position: relative;
+  }
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--against), var(--for));
+    width: 0%;
+    transition: width 1.8s cubic-bezier(.25,.46,.45,.94);
+  }
+  .score-bar-marker {
+    position: absolute;
+    top: -4px;
+    width: 4px;
+    height: 20px;
+    background: white;
+    border-radius: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.3;
+  }
+  .score-bar-number {
     text-align: center;
-    padding: 4rem 2rem;
+    margin-top: 14px;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--against);
+  }
+  .score-bar-number span { font-size: 1rem; color: var(--muted); font-weight: 500; margin-left: 4px; }
+
+  /* ── FOOTER ── */
+  footer {
     border-top: 1px solid var(--border);
-    color: var(--text-muted);
+    padding: 40px 24px;
+    text-align: center;
+    color: var(--muted);
     font-size: 0.8rem;
   }
+  footer strong { color: var(--text); }
 
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    color: var(--text-secondary);
-  }
-
-  /* Divider */
-  .divider {
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--for-mid), var(--accent-gold), var(--against-mid));
-    border-radius: 2px;
-    margin: 0 auto;
-  }
-
-  /* Animations */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-    40% { transform: translateX(-50%) translateY(-8px); }
-    60% { transform: translateX(-50%) translateY(-4px); }
-  }
-
-  @keyframes fillGauge {
-    from { width: 0; }
-  }
-
-  /* Scroll animations */
+  /* ── SCROLL REVEAL ── */
   .reveal {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
   }
-
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
 </style>
 </head>
 <body>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-badge">Formal Debate</div>
-  <h1 class="hero-title">
-    <span class="side-for">Israel</span>
-    <span class="vs">versus</span>
-    <span class="side-against">Palestine</span>
-  </h1>
-  <p class="hero-subtitle">
-    A structured debate exploring the Israeli-Palestinian conflict through 10 critical questions,
-    two rounds of argumentation, and an impartial crowd verdict.
-  </p>
-  <div class="hero-meta">
-    <div class="meta-item">
-      <span class="meta-label">Date</span>
-      <span class="meta-value">March 20, 2026</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Questions</span>
-      <span class="meta-value">10</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Rounds</span>
-      <span class="meta-value">2</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">Agents</span>
-      <span class="meta-value">3</span>
+<!-- ═══════════════════════════════════════════ HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-badge">Debate Transcript &amp; Verdict · 2026-03-20</div>
+    <h1>Israel vs Palestine</h1>
+    <p style="color:var(--muted);font-size:1rem;max-width:560px;margin:0 auto;">A structured 10-question debate on the Israeli-Palestinian conflict — historical claims, occupation, apartheid, resistance, refugees, settlements, governance, and paths to peace.</p>
+    <div class="hero-meta">
+      <span><span class="dot-for"></span> PRO-ISRAEL — Right to self-determination</span>
+      <span><span class="dot-against"></span> PRO-PALESTINE — Right to statehood</span>
     </div>
   </div>
-  <div class="scroll-indicator">
-    Scroll to explore
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
-  </div>
-</section>
+</header>
 
-<!-- Conviction Score -->
+<!-- ═══════════════════════════════════════════ SCORE GAUGE -->
 <section class="score-section">
-  <div class="section-label">Crowd Verdict</div>
-  <h2 class="section-title">Conviction Score</h2>
-
-  <div class="gauge-container">
-    <div class="gauge-score" id="scoreDisplay">35</div>
-    <div class="gauge-label">out of 100 &mdash; Crowd leans <strong style="color: var(--against-mid)">Pro-Palestine</strong></div>
-
-    <div class="gauge-bar-container">
-      <div class="gauge-bar-bg">
-        <div class="gauge-bar-fill" id="gaugeBar" style="width: 35%; background: linear-gradient(90deg, var(--against-primary), #f97316 35%, var(--for-primary));"></div>
-        <div class="gauge-marker" id="gaugeMarker" style="left: 35%;"></div>
-      </div>
-      <div class="gauge-bar-labels">
-        <span class="against-label">0 &mdash; Pro-Palestine</span>
-        <span style="color: var(--text-muted)">50</span>
-        <span class="for-label">Pro-Israel &mdash; 100</span>
-      </div>
+  <div class="container">
+    <div class="score-label">Crowd Conviction Score</div>
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 280 160">
+        <!-- Track -->
+        <path class="gauge-track"
+          d="M 30 130 A 110 110 0 0 1 250 130"
+          fill="none"/>
+        <!-- Against fill (left/red portion, 0-50 range) -->
+        <path class="gauge-fill-against" id="gauge-against"
+          d="M 30 130 A 110 110 0 0 1 250 130"
+          fill="none"
+          stroke-dasharray="345.6"
+          stroke-dashoffset="345.6"/>
+        <!-- For fill (right/blue portion, 50-100 range) -->
+        <path class="gauge-fill-for" id="gauge-for"
+          d="M 30 130 A 110 110 0 0 1 250 130"
+          fill="none"
+          stroke-dasharray="345.6"
+          stroke-dashoffset="345.6"/>
+        <!-- Needle -->
+        <g class="gauge-needle" id="gauge-needle" style="transform: rotate(-90deg); transform-origin: 140px 130px;">
+          <line x1="140" y1="130" x2="140" y2="40" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+          <circle cx="140" cy="130" r="6" fill="white" opacity="0.9"/>
+        </g>
+        <!-- Score text -->
+        <text class="gauge-center-text" x="140" y="115">38</text>
+        <text class="gauge-sub-text" x="140" y="137">out of 100</text>
+      </svg>
     </div>
-  </div>
-
-  <div class="verdict-card reveal">
-    <h3>Why the Crowd Landed at 35</h3>
-    <p>
-      The crowd leaned toward the Pro-Palestine position primarily because of the <strong>weight of international legal consensus</strong>
-      &mdash; the ICJ's near-unanimous 2004 advisory opinion, the 2024 opinion declaring the occupation illegal, UNSC Resolution 2334 on settlements,
-      and the Geneva Convention's Article 49. The <strong>settlement enterprise</strong> was seen as nearly indefensible under international law and
-      actively undermining the two-state solution. The <strong>democracy paradox</strong> &mdash; ruling over millions who cannot vote &mdash; also landed strongly.
-    </p>
-    <br>
-    <p>
-      However, the score didn't go lower because <strong>security threats are real and documented</strong>,
-      <strong>Hamas's conduct on October 7 was genuinely abhorrent</strong>, the pattern of rejecting peace proposals without counter-offers matters,
-      and Israel's character as a functional democracy for its citizens is not trivial.
-    </p>
+    <div class="gauge-labels">
+      <span class="lbl-left">Pro-Palestine · 0</span>
+      <span class="lbl-right">100 · Pro-Israel</span>
+    </div>
+    <div>
+      <div class="verdict-banner">The crowd leans toward the Pro-Palestine position</div>
+    </div>
   </div>
 </section>
 
-<div style="padding: 2rem 0;"><div class="divider"></div></div>
+<!-- ═══════════════════════════════════════════ SCORE BAR -->
+<div class="container reveal">
+  <div class="score-bar-wrap">
+    <div class="score-bar-labels">
+      <span class="lbl-l">Pro-Palestine (0)</span>
+      <span class="lbl-r">Pro-Israel (100)</span>
+    </div>
+    <div class="score-bar-track">
+      <div class="score-bar-fill" id="score-bar"></div>
+      <div class="score-bar-marker"></div>
+    </div>
+    <div class="score-bar-number">38 <span>/ 100</span></div>
+  </div>
+</div>
 
-<!-- Key Insights -->
+<!-- ═══════════════════════════════════════════ KEY INSIGHTS -->
 <section class="insights-section">
-  <div style="text-align: center;">
-    <div class="section-label">Analysis</div>
-    <h2 class="section-title">Key Insights</h2>
-  </div>
-
-  <div class="insights-grid">
-    <div class="insight-card reveal">
-      <h4><span class="insight-icon for">&#9733;</span> Strongest FOR Argument</h4>
-      <p>October 7 and the nature of Hamas &mdash; the deliberate massacre of 1,200 civilians, sexual violence, and hostage-taking represents an undeniable violation of IHL that no legal framework can justify. This was the Pro-Israel side's most powerful moment.</p>
-    </div>
-    <div class="insight-card reveal">
-      <h4><span class="insight-icon against">&#9733;</span> Strongest AGAINST Argument</h4>
-      <p>The international legal consensus on settlements and occupation &mdash; the ICJ, ICRC, UNSC Resolution 2334, and even Israel's own 1967 legal counsel Theodor Meron all concluded settlements violate international law. This wall of consensus was difficult to dismiss.</p>
-    </div>
-    <div class="insight-card reveal">
-      <h4><span class="insight-icon for">&#9671;</span> Weakest FOR Argument</h4>
-      <p>The defense of settlements was the Pro-Israel side's weakest area. Citing a single dissenting legal scholar (Eugene Rostow) against near-universal consensus, and the growth from 250K to 700K settlers during the "peace process" undercut claims of compromise willingness.</p>
-    </div>
-    <div class="insight-card reveal">
-      <h4><span class="insight-icon against">&#9671;</span> Weakest AGAINST Argument</h4>
-      <p>The Pro-Palestine side struggled most on Hamas and political violence. While citing legal rights to resist, the side did not adequately reckon with the specific horrors of October 7 or articulate how a future state would manage armed factions.</p>
-    </div>
-    <div class="insight-card reveal">
-      <h4><span class="insight-icon neutral">&#8596;</span> Most Contested Exchange</h4>
-      <p>The apartheid debate (Q3) was the most fiercely contested. The FOR side pointed to Arab Israeli citizens' full rights; the AGAINST side argued the system must be evaluated across all territory Israel controls. Both made valid points.</p>
-    </div>
-    <div class="insight-card reveal">
-      <h4><span class="insight-icon neutral">&#9888;</span> Key Turning Point</h4>
-      <p>The rebuttal on "generous offers" (Q6 Round 2) was a turning point. The AGAINST side's revelation that Robert Malley disputed the Camp David characterization and that the Olmert offer was never formalized weakened a central Pro-Israel narrative.</p>
+  <div class="container">
+    <div class="section-heading reveal">Key Insights</div>
+    <div class="insights-grid">
+      <div class="insight-card for-card reveal reveal-delay-1">
+        <span class="insight-icon">🟦</span>
+        <h3>Strongest FOR Argument</h3>
+        <p><strong>Security outcomes were concrete.</strong> The 90% reduction in suicide bombings after the security barrier, October 7's 1,200 killed &amp; 250 hostages, and Gaza having zero Israeli settlers post-2005 yet producing the attack — these grounded security claims in undeniable reality.</p>
+      </div>
+      <div class="insight-card against-card reveal reveal-delay-2">
+        <span class="insight-icon">🟥</span>
+        <h3>Strongest AGAINST Argument</h3>
+        <p><strong>Settlements &amp; the Nation-State Law.</strong> Article 49(6) is explicit, UNSC Resolutions 446/452/465 passed with US support, the ICJ confirmed illegality in 2004 &amp; 2024, and the 2018 Nation-State Law codifies ethnic hierarchy in Basic Law — the FOR side had no substantive response.</p>
+      </div>
+      <div class="insight-card gold-card reveal reveal-delay-1">
+        <span class="insight-icon">⚡</span>
+        <h3>Key Turning Point — Q3</h3>
+        <p><strong>The Nation-State Law (2018)</strong> was the single most impactful exchange. It codifies ethnic hierarchy — downgrades Arabic, reserves national self-determination exclusively for Jewish people — in Israel's Basic Law. The FOR side offered no substantive rebuttal.</p>
+      </div>
+      <div class="insight-card gold-card reveal reveal-delay-2">
+        <span class="insight-icon">🕊</span>
+        <h3>Key Turning Point — Q10</h3>
+        <p><strong>The Arab Peace Initiative (2002)</strong> directly contradicted the narrative of unilateral Palestinian rejectionism: 22 Arab states offered full normalization with the Arab and Muslim world in exchange for 1967 borders. Israel rejected it without a counter-offer.</p>
+      </div>
+      <div class="insight-card for-card reveal reveal-delay-3">
+        <span class="insight-icon">⚠</span>
+        <h3>FOR Side Weakness</h3>
+        <p>Invoked Camp David as proof of rejectionism without addressing the documented absence of a formal written proposal. Called HRW/Amnesty "biased" without evidence. Article 49 Nazi-deportation argument is a minority view explicitly rejected by UNSC resolutions the US itself supported.</p>
+      </div>
+      <div class="insight-card against-card reveal reveal-delay-3">
+        <span class="insight-icon">⚠</span>
+        <h3>AGAINST Side Weakness</h3>
+        <p>Declined to engage directly with October 7's specific horrors. The French Resistance/ANC analogy was vulnerable and not well-defended. Sometimes shifted between legal and moral arguments without signaling the transition clearly.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<div style="padding: 2rem 0;"><div class="divider"></div></div>
-
-<!-- Questions & Stances -->
+<!-- ═══════════════════════════════════════════ QUESTIONS -->
 <section class="questions-section">
-  <div class="questions-header">
-    <div class="section-label">Full Debate Transcript</div>
-    <h2 class="section-title">10 Questions, 2 Rounds</h2>
-    <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">All stances and rebuttals from both sides, presented in sequence.</p>
+  <div class="container">
+    <div class="section-heading reveal">All 10 Questions — Full Debate</div>
+
+    <!-- Q1 -->
+    <div class="question-block reveal">
+      <div class="question-header">
+        <div class="q-number">Q1</div>
+        <h2>Who has the stronger historical and legal claim to the land between the Jordan River and the Mediterranean Sea?</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="debate-card for-card-main">
+          <div class="card-pill pill-for">Round 1 · Pro-Israel</div>
+          <p>Israel holds the stronger historical and legal claim based on a convergence of ancient history, modern legal instruments, and international recognition. The Jewish people maintained an unbroken presence for over 3,000 years. The 1917 Balfour Declaration, 1920 San Remo Conference, 1922 League of Nations Mandate, and UN Partition Plan of 1947 (Resolution 181) all affirmed the legitimacy of a Jewish state. Israel was admitted to the UN in 1949 and recognized by over 160 nations. No equivalent international legal architecture exists for any rival claim to the entire territory.</p>
+        </div>
+        <div class="debate-card against-card-main">
+          <div class="card-pill pill-against">Round 1 · Pro-Palestine</div>
+          <p>Palestinians hold the stronger claim under historical continuity and modern international law. Arab Palestinians constituted roughly 90% of the population in Ottoman Palestine as late as 1878. Resolution 181 allocated 56% of territory to a Jewish state despite Palestinian majority. UNSC Resolutions 242 and 338 affirm acquisition of land by force is inadmissible. The ICJ's 2004 opinion confirmed the occupation violates international humanitarian law. The Balfour Declaration was a colonial-era promise by a government with no sovereign right to gift Palestinian land. Biblical claims cannot override modern property rights and the post-1945 legal order.</p>
+        </div>
+        <div class="debate-card for-rebuttal">
+          <div class="card-pill pill-for-r">Round 2 · Pro-Israel Rebuttal</div>
+          <p>The demographic argument is a red herring — Ottoman census data was unreliable, and "Palestine" had no distinct political identity. The 1947 Partition Plan was accepted by Jewish leadership and rejected by Arab states who then launched a war. The Nakba was a consequence of that Arab-initiated war, not a premeditated ethnic cleansing program. UNSC 242 calls for negotiated withdrawal, not unconditional withdrawal — the deliberate omission of "all" was intentional. The 1922 Mandate, 1947 UN partition, and 1948 declaration are the legal pillars, not biblical claims.</p>
+        </div>
+        <div class="debate-card against-rebuttal">
+          <div class="card-pill pill-against-r">Round 2 · Pro-Palestine Rebuttal</div>
+          <p>Continuous Jewish presence does not equal exclusive sovereign claim — these are entirely distinct legal concepts. The Balfour Declaration was a colonial instrument that never consulted the 90% Arab majority. Resolution 181's legitimacy is undermined by the fact that the General Assembly lacks authority to partition territory against its inhabitants' will — this is settled UN Charter law. 160 nations recognizing Israel is irrelevant to whether Palestinian rights were violated — 160 nations also recognize Palestinian self-determination per repeated UNGA resolutions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-block reveal">
+      <div class="question-header">
+        <div class="q-number">Q2</div>
+        <h2>Is Israel's military occupation of the West Bank and blockade of Gaza justified on security grounds?</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="debate-card for-card-main">
+          <div class="card-pill pill-for">Round 1 · Pro-Israel</div>
+          <p>Yes — Israel withdrew every soldier and settler from Gaza in 2005. Hamas seized control in 2007 and launched thousands of rockets. The Second Intifada killed over 1,000 Israeli civilians. The security barrier reduced suicide attacks by over 90 percent. The October 7, 2023 attack killed 1,200 people and took 250 hostages from territory Israel had vacated. Under international humanitarian law, a state has the obligation to defend its population. Security measures in the West Bank exist precisely to prevent a repeat.</p>
+        </div>
+        <div class="debate-card against-card-main">
+          <div class="card-pill pill-against">Round 1 · Pro-Palestine</div>
+          <p>The security justification collapses under empirical scrutiny. Nearly six decades of occupation with no resolution indicates the strategy has failed by its own metric. The Gaza blockade restricts food, medicine, and construction materials. UN documents warned Gaza would be "unlivable" by 2020 — accurate. Israeli documents from 2010 showed officials calculating minimum calories — collective punishment prohibited under Article 33 of the Fourth Geneva Convention. The occupation generates the very radicalization it purports to prevent. Ehud Barak acknowledged he too would have joined a militant organization were he Palestinian.</p>
+        </div>
+        <div class="debate-card for-rebuttal">
+          <div class="card-pill pill-for-r">Round 2 · Pro-Israel Rebuttal</div>
+          <p>The "calorie calculation" refers to a 2008 document estimating subsistence thresholds during a temporary tightening, not a policy of deliberate starvation. The West Bank barrier reduced suicide bombings by over 90% after 2002's 130 Israeli civilian deaths in a single year. Gaza has zero Israeli settlers post-2005 yet produced October 7 — directly challenging the premise that occupation is the cause of violence. Barak's hypothetical statement is anecdotal speculation, not policy.</p>
+        </div>
+        <div class="debate-card against-rebuttal">
+          <div class="card-pill pill-against-r">Round 2 · Pro-Palestine Rebuttal</div>
+          <p>Gaza was never free. The UN, ICRC, and virtually every international legal body classified Gaza as occupied territory even post-2005 because Israel controlled its airspace, coastline, borders, population registry, and electromagnetic sphere. Hamas's rise was partly enabled by Israel's deliberate policy of weakening the PLO. Israel's response to October 7 killed over 50,000 Palestinians — the majority civilians and children per UN and WHO data — destroyed 90% of housing, and induced famine. The ICJ ordered Israel to prevent genocide. Self-defense cannot legally justify collective punishment of 2.3 million people.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-block reveal">
+      <div class="question-header">
+        <div class="q-number">Q3</div>
+        <h2>Does Israel meet the criteria of an apartheid state in its treatment of Palestinians?</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="debate-card for-card-main">
+          <div class="card-pill pill-for">Round 1 · Pro-Israel</div>
+          <p>Israel does not meet the legal definition. Arab citizens hold full voting rights, sit in the Knesset, serve as Supreme Court justices, and in 2021 the Ra'am Party joined a governing coalition. No apartheid state has ever integrated its "oppressed" group into the highest levels of government. The West Bank situation reflects a temporary, conflict-driven security arrangement — not a racial ideology. South Africa's apartheid was a permanent, codified racial system applied to citizens. Israel applies civilian law to citizens and military law to a non-citizen population in a contested zone. The apartheid charge is strategically deployed to delegitimize Israel entirely.</p>
+        </div>
+        <div class="debate-card against-card-main">
+          <div class="card-pill pill-against">Round 1 · Pro-Palestine</div>
+          <p>By the legal definition in the 1973 International Convention and the Rome Statute, Israel's system qualifies. In the West Bank, Jewish settlers and Palestinian residents live under entirely separate legal systems on the same land — settlers under Israeli civil law, Palestinians under military law with a 99.7% conviction rate. This legal bifurcation on the basis of ethnicity is apartheid's definitional core. Human Rights Watch (2021), Amnesty International (2022), B'Tselem (2021), and the UN Special Rapporteur have reached this conclusion. Desmond Tutu stated the situation "reminded me of the apartheid regime." The Nation-State Law explicitly privileges Jewish identity.</p>
+        </div>
+        <div class="debate-card for-rebuttal">
+          <div class="card-pill pill-for-r">Round 2 · Pro-Israel Rebuttal</div>
+          <p>The apartheid label is polemical, not legal. South African apartheid was racial segregation within a single sovereign state. Palestinian Arabs in the West Bank and Gaza are not Israeli citizens — they are stateless populations in disputed territories where final-status negotiations were never completed. Military courts exist because the civilian court system has no jurisdiction over non-citizen combatants. Even the ICJ's 2024 advisory opinion did not declare Israel an apartheid state.</p>
+        </div>
+        <div class="debate-card against-rebuttal">
+          <div class="card-pill pill-against-r">Round 2 · Pro-Palestine Rebuttal</div>
+          <p>The "Arab citizens vote" defense was used to justify South African Bantustans — formal rights within a discriminatory system do not negate apartheid. Israel's own <strong>Nation-State Law (2018)</strong> explicitly downgrades Arabic and reserves national self-determination exclusively for Jewish people — codified ethnic hierarchy in Basic Law. The ICJ's 2024 advisory opinion declared the occupation itself illegal and called for its termination within 12 months. When millions in the West Bank live under military law while settlers on the same land live under civil law, that is legal segregation by ethnicity meeting the Rome Statute's intent requirement.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-block reveal">
+      <div class="question-header">
+        <div class="q-number">Q4</div>
+        <h2>Are Palestinian armed resistance movements justified under international law as liberation struggles?</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="debate-card for-card-main">
+          <div class="card-pill pill-for">Round 1 · Pro-Israel</div>
+          <p>International law permits armed resistance against military targets — not deliberate mass murder of civilians. Hamas's October 7 attack targeted a music festival, kibbutz homes, and families — executing children, raping women, burning people alive — with no legal or moral justification under any framework. Common Article 3 of the Geneva Conventions explicitly prohibits violence against civilians, hostage-taking, and outrages upon personal dignity. Firing unguided rockets into civilian centers — over 20,000 since 2001 — is a war crime regardless of claimed political purpose. When a negotiated state is repeatedly offered and refused, the "liberation" framing loses credibility.</p>
+        </div>
+        <div class="debate-card against-card-main">
+          <div class="card-pill pill-against">Round 1 · Pro-Palestine</div>
+          <p>International law explicitly recognizes the right of peoples under occupation to resist — including by armed means. UN GA Resolutions 3314 (1974) and 37/43 (1982) reaffirm "the legitimacy of the struggle of peoples for liberation from colonial and foreign domination and foreign occupation by all available means, including armed struggle." The same framework that justified the French Resistance and South African armed resistance against apartheid applies to Palestinians. Critical distinction: targeting military forces — protected; targeting civilians — a war crime. When non-violent resistance is met with live ammunition (2018 Great March: 200+ unarmed protesters killed by snipers), demanding Palestinians restrict to non-violence demands acceptance of subjugation.</p>
+        </div>
+        <div class="debate-card for-rebuttal">
+          <div class="card-pill pill-for-r">Round 2 · Pro-Israel Rebuttal</div>
+          <p>UNGA Resolution 37/43 is non-binding — it carries no force of international law. The French Resistance and ANC did not systematically murder children at music festivals, take civilian hostages including infants, or rape women as deliberate war strategy. Conflating those movements with Hamas is historically illiterate. The 2018 Gaza protests were not uniformly unarmed — the IDF documented armed infiltrators and IED placements within protest cover. The right to resist does not extend to deliberate targeting of non-combatants under any credible reading of international humanitarian law, including Common Article 3.</p>
+        </div>
+        <div class="debate-card against-rebuttal">
+          <div class="card-pill pill-against-r">Round 2 · Pro-Palestine Rebuttal</div>
+          <p>October 7 atrocities were war crimes — this debate does not require defending them. But the opponent uses Hamas's crimes to retroactively delegitimize Palestinian civilian rights, which is a logical fallacy. Common Article 3 applies equally to Israel's conduct in Gaza — indiscriminate bombing of refugee camps, hospitals, and bakeries also constitutes war crimes. Camp David 2000 offered Palestinian cantons disconnected by Israeli roads with Israel retaining sovereignty over borders, airspace, and electromagnetic spectrum — not a viable state. Dennis Ross's own maps confirm this. No party is obligated to accept an offer that falls short of their legal rights.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-block reveal">
+      <div class="question-header">
+        <div class="q-number">Q5</div>
+        <h2>Has the international community been fair and balanced in its approach to the conflict?</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="debate-card for-card-main">
+          <div class="card-pill pill-for">Round 1 · Pro-Israel</div>
+          <p>The international community has been profoundly unfair to Israel. The UNHRC passed 78 resolutions condemning Israel between 2006 and 2022, compared to 7 for Syria, 6 for North Korea, and 4 for Iran. The UN General Assembly's Agenda Item 7 singles out Israel as the only country with a permanent standing condemnation item. The 1975 UN resolution equating Zionism with racism (revoked 1991) reveals how political manipulation has driven international positions. Robert Bernstein, founder of Human Rights Watch, resigned in protest over his own organization's disproportionate focus on Israel. The double standard is documented, not a talking point.</p>
+        </div>
+        <div class="debate-card against-card-main">
+          <div class="card-pill pill-against">Round 1 · Pro-Palestine</div>
+          <p>The US has vetoed over 45 UN Security Council resolutions critical of Israel since 1972. In February 2024, the US vetoed a ceasefire resolution while Gaza's death toll surpassed 30,000. Oslo required Palestinians to recognize Israel's right to exist, but Israel was never required to recognize Palestinian statehood or halt settlement expansion — which accelerated after Oslo. The EU declares settlements "illegal" but imposes no penalties. The ICC's 2021 investigation was met with US threats of sanctions. Israel receives $3.8 billion annually in US military aid with no human rights conditions. This is the opposite of balance.</p>
+        </div>
+        <div class="debate-card for-rebuttal">
+          <div class="card-pill pill-for-r">Round 2 · Pro-Israel Rebuttal</div>
+          <p>US vetoes reflect geopolitical alliance, not evidence of Palestinian righteousness. The UNHRC's institutional bias is documented — it included members like Libya and Venezuela while uniquely targeting Israel. The Oslo asymmetry reflected reality: Israel was recognizing a non-state actor that had previously committed mass terrorism — a massive concession. Military aid comes with end-use restrictions under the Arms Export Control Act. Imperfect accountability is not proof of impunity.</p>
+        </div>
+        <div class="debate-card against-rebuttal">
+          <div class="card-pill pill-against-r">Round 2 · Pro-Palestine Rebuttal</div>
+          <p>The disproportionate UNHRC focus reflects 57 years of occupation generating visible, reviewable, daily violations. Syria and North Korea obstruct UN investigators entirely — the comparison is invalid. Robert Bernstein's 2009 op-ed argued accountability should apply less to open societies — a perverse inversion of democratic accountability. Criticizing Israeli state policy is not antisemitism — conflating the two suppresses legitimate human rights discourse.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-block reveal">
+      <div class="question-header">
+        <div class="q-number">Q6</div>
+        <h2>Is the two-state solution still viable, and which side bears more responsibility for its failure?</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="debate-card for-card-main">
+          <div class="card-pill pill-for">Round 1 · Pro-Israel</div>
+          <p>The two-state solution remains the only viable framework, and primary responsibility for its failure lies with Palestinian leadership's repeated rejection of credible offers. In 1937 (Peel Commission) — Arab leadership rejected. In 1947 (UN Partition Plan) — Arabs launched war. In 2000 (Camp David) — rejected. In 2008 (Olmert) — 93.5% of the West Bank plus land swaps, Palestinian capital in East Jerusalem — Abbas did not respond. Hamas's founding charter calls for the destruction of Israel and the killing of Jews. A two-state solution requires both parties to accept the other's existence. Israeli settlement expansion complicates the path and deserves criticism, but negotiated land swaps have been proposed repeatedly.</p>
+        </div>
+        <div class="debate-card against-card-main">
+          <div class="card-pill pill-against">Round 1 · Pro-Palestine</div>
+          <p>The two-state solution has been rendered nearly non-viable by deliberate Israeli policy. Over 700,000 settlers now live in the West Bank and East Jerusalem, strategically placed to fragment Palestinian territory into non-contiguous bantustans, severing East Jerusalem from any future Palestinian capital. The settlement enterprise has accelerated under every Israeli government regardless of party. Camp David did not offer a viable Palestinian state — the offer required Israeli sovereignty over large settlement blocs, no Palestinian control of Jerusalem's holy sites, and no resolution of the refugee question. The Palestinian Authority has recognized Israel's right to exist since 1993 — a recognition Israel has never reciprocated regarding Palestinian statehood.</p>
+        </div>
+        <div class="debate-card for-rebuttal">
+          <div class="card-pill pill-for-r">Round 2 · Pro-Israel Rebuttal</div>
+          <p>Gaza has zero Israeli settlers yet produced October 7 — this challenges the premise that settlements are the sole obstacle. Camp David included 91-94% of the West Bank, a Palestinian capital in East Jerusalem, and control of the Temple Mount's surface. Robert Malley himself later acknowledged Palestinian responsibility for Camp David's failure. Hamas emerged from the Muslim Brotherhood's ideological project — radicalization is a choice, not an inevitability of occupation.</p>
+        </div>
+        <div class="debate-card against-rebuttal">
+          <div class="card-pill pill-against-r">Round 2 · Pro-Palestine Rebuttal</div>
+          <p>Clayton Swisher's "The Truth About Camp David" and Robert Malley's own Foreign Affairs article documented that no formal final written offer was ever tabled at Camp David. Clinton said Arafat made mistakes but never asserted a complete offer was rejected. The 2017 Hamas charter revision — accepting a Palestinian state on 1967 borders — was entirely ignored by the opponent. The <strong>Arab Peace Initiative of 2002</strong> offered 22 Arab states' full normalization for 1967 borders — Israel rejected it without a counter-offer. Actions speak: settlement construction never stopped during any negotiation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question-block reveal">
+      <div class="question-header">
+        <div class="q-number">Q7</div>
+        <h2>How should the Palestinian refugee right of return be addressed?</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="debate-card for-card-main">
+          <div class="card-pill pill-for">Round 1 · Pro-Israel</div>
+          <p>The right of return must be addressed through compensation, resettlement in a future Palestinian state, and negotiated family reunification — not a blanket return that would demographically dismantle the world's only Jewish state. UNRWA's definition uniquely passes refugee status down through generations indefinitely, inflating numbers from roughly 700,000 original 1948 refugees to over 5 million today. Approximately 800,000 to 1 million Jewish refugees were expelled from Arab countries after 1948 and absorbed with no UN agency and no calls for return. A just resolution must be symmetrical.</p>
+        </div>
+        <div class="debate-card against-card-main">
+          <div class="card-pill pill-against">Round 1 · Pro-Palestine</div>
+          <p>The Palestinian right of return is not a political demand — it is an individual legal right. UN General Assembly Resolution 194 (1948) affirmed that "refugees wishing to return to their homes and live at peace with their neighbours should be permitted to do so at the earliest practicable date" — reaffirmed over 130 times. Approximately 5.9 million Palestinian refugees are registered with UNRWA. Their villages — over 400 destroyed — are documented by Israeli historian Benny Morris. This was organized expulsion, including documented massacres such as Deir Yassin. The argument that Palestinian rights cannot be honored because they would alter Israel's demographic majority explicitly privileges ethnic dominance over legal rights.</p>
+        </div>
+        <div class="debate-card for-rebuttal">
+          <div class="card-pill pill-for-r">Round 2 · Pro-Israel Rebuttal</div>
+          <p>Resolution 194 has conditionality — "wishing to return and live in peace with their neighbours." Benny Morris — cited by the opponent — concluded no master plan for expulsion existed and that some measures were historically understandable in the context of a war of annihilation launched against Israel. The 800,000 Jewish refugees expelled from Arab countries receive zero international advocacy. UNRWA's multigenerational definition inflates numbers from 700,000 to 5.9 million — a figure that would demographically eliminate the Jewish state by design.</p>
+        </div>
+        <div class="debate-card against-rebuttal">
+          <div class="card-pill pill-against-r">Round 2 · Pro-Palestine Rebuttal</div>
+          <p>UNRWA's multigenerational definition exists because the refugees were never resettled — you cannot extinguish a refugee crisis by redefining the victims. The 1951 Refugee Convention recognizes inherited refugee status when original displacement remains unresolved. Regarding Jewish refugees from Arab countries: Israel used those refugees as citizens and built a state around them, while simultaneously arguing Palestinian refugees have no right of return to the state built on their homes. Resolution 194, reaffirmed over 130 times, establishes the right of return as individual and inalienable — not subject to demographic calculations by the dispossessing party.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="question-block reveal">
+      <div class="question-header">
+        <div class="q-number">Q8</div>
+        <h2>Are Israeli settlements in the West Bank a legitimate expression of sovereignty or a violation of international law?</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="debate-card for-card-main">
+          <div class="card-pill pill-for">Round 1 · Pro-Israel</div>
+          <p>The legal picture is more contested than critics acknowledge. The West Bank's legal status derives from 1949 armistice lines — not recognized international borders. Jordan, which controlled the West Bank from 1948 to 1967, had no legitimate sovereign claim — it had seized the territory in an offensive war. When Israel captured the West Bank in 1967 in a defensive war, it entered territory with no recognized sovereign. Article 49 of the Fourth Geneva Convention was written specifically in response to Nazi Germany's deportation of populations — voluntary civilian movement into disputed territory is legally distinguishable. Former State Department Legal Advisor Stephen Schwebel and Judge Eugene Rostow argued Israel has valid claims pending a final peace agreement.</p>
+        </div>
+        <div class="debate-card against-card-main">
+          <div class="card-pill pill-against">Round 1 · Pro-Palestine</div>
+          <p>Israeli settlements are unambiguously illegal under international law. Article 49 of the Fourth Geneva Convention is explicit: "The Occupying Power shall not deport or transfer parts of its own civilian population into the territory it occupies." The ICRC — authoritative interpreter of Geneva Conventions — has repeatedly confirmed this applies to Israeli settlements. The ICJ's 2004 opinion stated settlements "have been established in breach of international law." UNSC Resolution 2334 (2016) declared settlements have "no legal validity" and constitute "a flagrant violation under international law." Over 700,000 settlers now occupy over 42% of West Bank land. Water resources are diverted at ratios of 6:1. Settlement infrastructure physically fragments Palestinian territory.</p>
+        </div>
+        <div class="debate-card for-rebuttal">
+          <div class="card-pill pill-for-r">Round 2 · Pro-Israel Rebuttal</div>
+          <p>The ICJ's 2004 advisory opinion was non-binding. UNSC 2334 passed because the Obama administration deliberately abstained — a parting political shot, not a legal transformation of the territories' status. The West Bank's legal status remains "disputed," not "occupied sovereign Palestinian territory," because no Palestinian state has ever exercised sovereignty there. Jordan's 1948-1967 control was itself unrecognized by most states. The Israeli Supreme Court has ordered route modifications and removed illegal outposts, demonstrating functioning judicial oversight.</p>
+        </div>
+        <div class="debate-card against-rebuttal">
+          <div class="card-pill pill-against-r">Round 2 · Pro-Palestine Rebuttal</div>
+          <p>Article 49(6) applies regardless of the prior sovereignty question — confirmed explicitly by the ICJ in both 2004 and 2024. The Schwebel-Rostow minority view was rejected by the UN Security Council in Resolutions 446, 452, and 465 — all passed with US support. The French text of Resolution 242 uses "des territoires" implying all territories. Over 700,000 settlers now live in the West Bank while Israel claims the matter is "under negotiation" — this is running out the clock, not preparation for a negotiated solution.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="question-block reveal">
+      <div class="question-header">
+        <div class="q-number">Q9</div>
+        <h2>What role does each side's governance play in perpetuating or resolving the conflict?</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="debate-card for-card-main">
+          <div class="card-pill pill-for">Round 1 · Pro-Israel</div>
+          <p>Israel is a functioning democracy with independent courts, a free press, an active civil society, and civilian oversight of the military. Its Supreme Court regularly rules against the government on settlement issues. Israel has made peace with Egypt (1979) and Jordan (1994), proving its government can deliver durable agreements. Palestinian governance presents a troubling picture: the PA has governed without elections since 2006, the "pay-to-slay" policy (Law No. 14 of 2004) provides salaries to Palestinians convicted of terrorism, spending hundreds of millions annually. In Gaza, Hamas has suppressed opposition, executed rivals, and embedded military infrastructure in hospitals, schools, and mosques.</p>
+        </div>
+        <div class="debate-card against-card-main">
+          <div class="card-pill pill-against">Round 1 · Pro-Palestine</div>
+          <p>Palestinian governance is deeply flawed — Hamas's 2023 attacks were war crimes, the PA is corrupt and undemocratic. But these failures must be contextualized against structural conditions. The PA was created by Oslo as a subcontractor of Israeli occupation — denied control of borders, airspace, water, and electromagnetic spectrum. When Hamas won the 2006 Palestinian legislative elections — declared free and fair by the Carter Center — Israel, the US, and EU immediately imposed an economic siege, signaling democratic outcomes are only accepted when producing compliant leadership. Benjamin Netanyahu has openly stated he blocked the two-state solution as a political objective. Palestinian governance failures occur under occupation; Israeli governance failures are the occupation.</p>
+        </div>
+        <div class="debate-card for-rebuttal">
+          <div class="card-pill pill-for-r">Round 2 · Pro-Israel Rebuttal</div>
+          <p>Yasser Arafat diverted hundreds of millions in international aid into personal accounts and factional patronage — documented by the IMF and World Bank. Hamas won the 2006 election and then violently seized Gaza in 2007, throwing Fatah members off rooftops — the Carter Center certified the vote, not the subsequent coup. The Israeli Supreme Court has ruled against the government on settlements and barrier route issues more times than acknowledged. Blaming occupation for every internal Palestinian governance failure denies Palestinian agency.</p>
+        </div>
+        <div class="debate-card against-rebuttal">
+          <div class="card-pill pill-against-r">Round 2 · Pro-Palestine Rebuttal</div>
+          <p>The "pay-to-slay" characterization misrepresents a social welfare system for imprisoned family members — analogous to how many states support families of imprisoned individuals. Palestinian elections were not held partly because Israel arrested elected Hamas legislators and the US refused to recognize results — the democratic process was sabotaged externally. Egypt 1979 and Jordan 1994 are irrelevant comparisons: those states made peace over their own sovereign territories. Israel has never offered Palestinians what it offered Egypt — full sovereignty, recognized borders, and end of occupation. The comparison proves the point: when Israel is asked to give the same terms to Palestinians, it refuses.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="question-block reveal">
+      <div class="question-header">
+        <div class="q-number">Q10</div>
+        <h2>What would a just and lasting peace look like, and which side's vision comes closer to achieving it?</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="debate-card for-card-main">
+          <div class="card-pill pill-for">Round 1 · Pro-Israel</div>
+          <p>A just and lasting peace requires two states for two peoples, mutual recognition, security guarantees, negotiated borders with land swaps, compensation for refugees resettled in Palestine or third countries, and a shared arrangement for Jerusalem. Rabin was assassinated for pursuing Oslo. Barak offered a state. Olmert offered the most generous package in history. The Abraham Accords of 2020 demonstrate regional peace is achievable when partners are willing. Hamas's vision — enshrined in its founding documents — is a Muslim state from the river to the sea with no Jewish sovereignty. This is not a negotiating position; it is an eliminationist program. Israel's vision is the only one containing the structural possibility of coexistence.</p>
+        </div>
+        <div class="debate-card against-card-main">
+          <div class="card-pill pill-against">Round 1 · Pro-Palestine</div>
+          <p>A just peace must be built on international law, equality, and human rights — not on the current power imbalance. It requires full end of the military occupation, recognition of Palestinian self-determination and statehood, a just resolution of the refugee question per Resolution 194, and equal rights for all people living between the river and the sea. The Arab Peace Initiative of 2002, endorsed by all 22 Arab League states, offered Israel full normalization with the entire Arab and Muslim world in exchange for withdrawal to 1967 borders and a just refugee settlement. Israel never formally responded. The Palestinian vision is rooted in international law and UN resolutions. The status quo — permanent occupation, expanding settlements — offers neither justice nor lasting peace.</p>
+        </div>
+        <div class="debate-card for-rebuttal">
+          <div class="card-pill pill-for-r">Round 2 · Pro-Israel Rebuttal</div>
+          <p>The Arab Peace Initiative was not rejected outright — Israel engaged it and identified fundamental problems, including the right of return clause that would demographically end Israel as a Jewish state. The one-state solution with "equal rights" is a formula that in practice ends Jewish self-determination — the one form of national self-determination the opponent apparently considers illegitimate. The initiative arrived during the height of the Second Intifada. A negotiated two-state solution remains the only framework that honors both peoples' claims.</p>
+        </div>
+        <div class="debate-card against-rebuttal">
+          <div class="card-pill pill-against-r">Round 2 · Pro-Palestine Rebuttal</div>
+          <p>The Clinton Parameters were never formally accepted by Israel — Barak's government was collapsing and no written Israeli acceptance was deposited. Even those parameters left Israel controlling Palestinian borders, airspace, and requiring military presence in the Jordan Valley — not full sovereignty. The "river to sea" phrase the opponent uses to condemn Palestinians is simultaneously used by Israeli coalition ministers — Finance Minister Smotrich and National Security Minister Ben-Gvir openly call for annexation and ethnic cleansing. If eliminationist rhetoric disqualifies a side, address Israeli ministers first. 57 years of settlement expansion during every "negotiation" demonstrates which party forecloses the two-state solution on the ground.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
+</section>
 
-  <!-- Q1 -->
-  <div class="question-block reveal">
-    <div class="question-number">1</div>
-    <h3 class="question-text">Who has the stronger historical and legal claim to the land?</h3>
+<!-- ═══════════════════════════════════════════ VERDICT DETAIL -->
+<section class="verdict-section">
+  <div class="container">
+    <div class="section-heading reveal">Full Verdict Reasoning</div>
 
-    <div class="card-row-label for-r1">&#x1F7E6; Round 1 &middot; PRO-ISRAEL Stance</div>
-    <div class="stance-card for-card">
-      <div class="stance-header for"><span class="stance-dot for"></span> Pro-Israel</div>
-      <div class="stance-content">Israel's claim rests on an unbroken 3,000-year connection, documented in archaeology and scripture. The Balfour Declaration, San Remo Resolution, and League of Nations Mandate (1922) recognized the Jewish historical connection. UN Resolution 181 proposed partition &mdash; Jews accepted, Arabs rejected and launched war. No independent Palestinian state ever existed. The Jewish people are indigenous and returned through lawful, internationally sanctioned means. No other nation has a comparably documented, continuous, legally ratified claim to its territory.</div>
+    <div class="verdict-card for-v reveal">
+      <h3>Where the FOR side was most compelling</h3>
+      <p>The FOR side was strongest on the security question's factual core. The 90% reduction in suicide bombings after the security barrier was a concrete, verifiable outcome. October 7 — 1,200 killed, 250 hostages — grounded Israeli security concerns in undeniable reality. The point about Gaza having zero Israeli settlers post-2005 yet producing October 7 was the FOR side's strongest rebuttal. The pattern of rejected peace offers (1937, 1947, 2000, 2008) formed a coherent cumulative argument. The Abraham Accords demonstrated that normalization is achievable with willing partners — a meaningful data point.</p>
     </div>
 
-    <div class="card-row-label against-r1">&#x1F7E5; Round 1 &middot; PRO-PALESTINE Stance</div>
-    <div class="stance-card against-card">
-      <div class="stance-header against"><span class="stance-dot against"></span> Pro-Palestine</div>
-      <div class="stance-content">Palestinians have the stronger claim, rooted in continuous habitation spanning millennia. The 1947 Partition Plan was adopted without consent of the majority &mdash; Palestinians were two-thirds yet allocated only 43% of the land. The Balfour Declaration was issued by a colonial power with no sovereign right over the territory. Historical presence thousands of years ago does not override the rights of a living, continuous population under modern international law. The principle of self-determination entitles the Palestinian people to sovereignty.</div>
+    <div class="verdict-card against-v reveal">
+      <h3>Where the AGAINST side was most compelling</h3>
+      <p>The settlements argument was most powerful — Article 49(6) is explicit, UNSC Resolutions 446/452/465 passed with US support, and the ICJ confirmed illegality in both 2004 and 2024. 700,000 settlers on 42% of the West Bank is a physical fact that forecloses territorial contiguity.</p>
+      <p>The Nation-State Law (2018) was the single most impactful exchange — it codifies ethnic hierarchy in Israel's Basic Law, and the FOR side had no substantive response. The Arab Peace Initiative (Q10) directly contradicted the narrative of unilateral Arab/Palestinian rejectionism: 22 Arab states offered full normalization, Israel rejected without counter-offer. The Camp David rebuttal was effective — both Swisher and Malley documented that no formal final written offer was tabled, and Clinton's own statements acknowledged Arafat made mistakes without asserting a complete offer was rejected.</p>
     </div>
 
-    <div class="round-separator"><div class="round-separator-line"></div><div class="round-separator-text">Round 2 &mdash; Rebuttals</div><div class="round-separator-line"></div></div>
-
-    <div class="card-row-label for-r2">&#x1F7E6; Round 2 &middot; PRO-ISRAEL Rebuttal</div>
-    <div class="stance-card for-rebuttal">
-      <div class="stance-header for-muted"><span class="stance-dot for-muted"></span> Pro-Israel Rebuttal</div>
-      <div class="stance-content">The claim of "continuous habitation" applies equally to Jews, who maintained presence in Safed, Hebron, Jerusalem, and Tiberias. The Partition Plan was rejected by Arabs, not imposed &mdash; Jews accepted, Arabs answered with war. Much of the Jewish allocation was uninhabitable Negev desert. The 1922 Mandate explicitly recognized Jewish rights. Arab population grew through immigration during Ottoman/Mandate periods. Jewish self-determination doesn't negate Palestinian claims &mdash; but Palestinian claims cannot erase Jewish indigeneity.</div>
-    </div>
-
-    <div class="card-row-label against-r2">&#x1F7E5; Round 2 &middot; PRO-PALESTINE Rebuttal</div>
-    <div class="stance-card against-rebuttal">
-      <div class="stance-header against-muted"><span class="stance-dot against-muted"></span> Pro-Palestine Rebuttal</div>
-      <div class="stance-content">A 3,000-year religious connection doesn't translate to a modern legal right to dispossess. The Balfour Declaration's own clause protecting "existing non-Jewish communities" was systematically violated. Resolution 181 gave 56% of land to a group owning 7%. The "no Palestinian state existed" argument is a colonial framework &mdash; most Middle East states didn't exist before the 20th century. The absence of a Westphalian state doesn't erase rights under international law, including the right to self-determination.</div>
-    </div>
-  </div>
-
-  <!-- Q2 -->
-  <div class="question-block reveal">
-    <div class="question-number">2</div>
-    <h3 class="question-text">Is the military occupation and Gaza blockade justified on security grounds?</h3>
-
-    <div class="card-row-label for-r1">&#x1F7E6; Round 1 &middot; PRO-ISRAEL Stance</div>
-    <div class="stance-card for-card">
-      <div class="stance-header for"><span class="stance-dot for"></span> Pro-Israel</div>
-      <div class="stance-content">Security measures are direct responses to existential threats. The West Bank overlooks Israel's 9-mile-wide coastal plain. The 2005 Gaza withdrawal was met with Hamas's seizure of power and 20,000+ rockets. The blockade targets weapons and dual-use materials. The security barrier reduced suicide bombings by over 90%. Article 51 of the UN Charter recognizes the inherent right of self-defense. No nation facing thousands of rockets and terror tunnels would act differently.</div>
-    </div>
-
-    <div class="card-row-label against-r1">&#x1F7E5; Round 1 &middot; PRO-PALESTINE Stance</div>
-    <div class="stance-card against-card">
-      <div class="stance-header against"><span class="stance-dot against"></span> Pro-Palestine</div>
-      <div class="stance-content">Security concerns do not justify a 57-year military occupation violating the Fourth Geneva Convention. Over 700 checkpoints, a wall declared illegal by the ICJ in 2004, and collective punishment of 2 million Gazans. Former Shin Bet heads acknowledge the occupation is unsustainable. The blockade constitutes collective punishment under Article 33 of the Geneva Convention. True security comes through justice and rights, not domination of a captive civilian population.</div>
-    </div>
-
-    <div class="round-separator"><div class="round-separator-line"></div><div class="round-separator-text">Round 2 &mdash; Rebuttals</div><div class="round-separator-line"></div></div>
-
-    <div class="card-row-label for-r2">&#x1F7E6; Round 2 &middot; PRO-ISRAEL Rebuttal</div>
-    <div class="stance-card for-rebuttal">
-      <div class="stance-header for-muted"><span class="stance-dot for-muted"></span> Pro-Israel Rebuttal</div>
-      <div class="stance-content">The occupation exists because of wars launched against Israel &mdash; 1948, 1967, 1973. Israel offered to return territories after 1967 and was met with the Khartoum "Three Nos." The ICJ opinion was non-binding. Egypt maintains the same Gaza blockade. Shin Bet heads affirm threats are real &mdash; their critique is strategic, not moral. Gaza withdrawal proved: withdrawal without security guarantees = 20,000+ rockets.</div>
-    </div>
-
-    <div class="card-row-label against-r2">&#x1F7E5; Round 2 &middot; PRO-PALESTINE Rebuttal</div>
-    <div class="stance-card against-rebuttal">
-      <div class="stance-header against-muted"><span class="stance-dot against-muted"></span> Pro-Palestine Rebuttal</div>
-      <div class="stance-content">The framing inverts cause and effect &mdash; resistance emerged in response to decades of military rule, not the other way around. The 2005 "withdrawal" maintained total control of airspace, coastline, and borders; Gaza is still considered occupied by the UN and ICRC. The blockade restricted food, building materials, even crayons. 85% of the barrier runs through the West Bank, not along the Green Line.</div>
-    </div>
-  </div>
-
-  <!-- Q3 -->
-  <div class="question-block reveal">
-    <div class="question-number">3</div>
-    <h3 class="question-text">Does Israel meet the criteria of an apartheid state?</h3>
-
-    <div class="card-row-label for-r1">&#x1F7E6; Round 1 &middot; PRO-ISRAEL Stance</div>
-    <div class="stance-card for-card">
-      <div class="stance-header for"><span class="stance-dot for"></span> Pro-Israel</div>
-      <div class="stance-content">No. Arab Israeli citizens &mdash; 21% of the population &mdash; have full and equal rights: they vote, serve in the Knesset, sit on the Supreme Court, and the Ra'am party was part of a governing coalition. The West Bank involves military administration over non-citizens in disputed territory due to unresolved conflict, not racial ideology. The apartheid label redefines the term beyond its 1973 Convention meaning, which requires racial domination within a single sovereign state.</div>
-    </div>
-
-    <div class="card-row-label against-r1">&#x1F7E5; Round 1 &middot; PRO-PALESTINE Stance</div>
-    <div class="stance-card against-card">
-      <div class="stance-header against"><span class="stance-dot against"></span> Pro-Palestine</div>
-      <div class="stance-content">Yes. Amnesty International, Human Rights Watch, and UN ESCWA independently concluded Israel meets the legal definition of apartheid. Two populations under the same territorial control are governed by separate legal systems &mdash; settlers enjoy civil law while Palestinians live under military law. The 2018 Nation-State Law constitutionally declares self-determination "unique to the Jewish people." Desmond Tutu compared it to and said it was worse than South African apartheid.</div>
-    </div>
-
-    <div class="round-separator"><div class="round-separator-line"></div><div class="round-separator-text">Round 2 &mdash; Rebuttals</div><div class="round-separator-line"></div></div>
-
-    <div class="card-row-label for-r2">&#x1F7E6; Round 2 &middot; PRO-ISRAEL Rebuttal</div>
-    <div class="stance-card for-rebuttal">
-      <div class="stance-header for-muted"><span class="stance-dot for-muted"></span> Pro-Israel Rebuttal</div>
-      <div class="stance-content">The apartheid label is political, not legal. The West Bank is governed under the law of armed conflict &mdash; a different legal framework. The Nation-State Law doesn't strip rights; many nations define ethnic/religious character constitutionally (Pakistan, Greece, Denmark). Leading legal scholars criticized Amnesty and HRW for conflating distinct legal regimes. Anti-apartheid activists have also rejected the comparison.</div>
-    </div>
-
-    <div class="card-row-label against-r2">&#x1F7E5; Round 2 &middot; PRO-PALESTINE Rebuttal</div>
-    <div class="stance-card against-rebuttal">
-      <div class="stance-header against-muted"><span class="stance-dot against-muted"></span> Pro-Palestine Rebuttal</div>
-      <div class="stance-content">The designation addresses the entire system of control between the river and the sea. B'Tselem &mdash; an Israeli organization &mdash; reached the same conclusion. When millions under military law live beside settlers enjoying civil law on the same territory, that's a two-tier system based on ethnicity. Adalah documented 65+ discriminatory laws. Token representation doesn't negate structural discrimination, just as it didn't negate South Africa's tricameral system.</div>
-    </div>
-  </div>
-
-  <!-- Q4 -->
-  <div class="question-block reveal">
-    <div class="question-number">4</div>
-    <h3 class="question-text">Are Palestinian armed resistance movements justified under international law?</h3>
-
-    <div class="card-row-label for-r1">&#x1F7E6; Round 1 &middot; PRO-ISRAEL Stance</div>
-    <div class="stance-card for-card">
-      <div class="stance-header for"><span class="stance-dot for"></span> Pro-Israel</div>
-      <div class="stance-content">International law provides no blank check for violence. Hamas and PIJ systematically violate IHL: targeting civilians, using human shields, firing rockets indiscriminately. October 7 was the largest massacre of Jews since the Holocaust &mdash; 1,200 murdered, 250 taken hostage, systematic sexual violence committed. Hamas's charter calls for Israel's destruction. A movement whose methods are war crimes cannot claim legitimate resistance.</div>
-    </div>
-
-    <div class="card-row-label against-r1">&#x1F7E5; Round 1 &middot; PRO-PALESTINE Stance</div>
-    <div class="stance-card against-card">
-      <div class="stance-header against"><span class="stance-dot against"></span> Pro-Palestine</div>
-      <div class="stance-content">International law recognizes the right of peoples under occupation to resist, including armed struggle. UN Resolution 3236 affirms Palestinian rights "by all means available." Additional Protocol I recognizes wars of national liberation. Resistance arises from occupation, not in a vacuum. The right to resist is grounded in international law &mdash; though IHL obligations to distinguish military from civilian targets still apply to all parties.</div>
-    </div>
-
-    <div class="round-separator"><div class="round-separator-line"></div><div class="round-separator-text">Round 2 &mdash; Rebuttals</div><div class="round-separator-line"></div></div>
-
-    <div class="card-row-label for-r2">&#x1F7E6; Round 2 &middot; PRO-ISRAEL Rebuttal</div>
-    <div class="stance-card for-rebuttal">
-      <div class="stance-header for-muted"><span class="stance-dot for-muted"></span> Pro-Israel Rebuttal</div>
-      <div class="stance-content">This conflates a right to resist with an unlimited license to kill civilians. Resolution 3236 doesn't authorize civilian attacks. October 7 &mdash; systematic murder, rape, hostage-taking &mdash; cannot be justified under any legal theory. "Armed struggle" in international law means military targets, not butchering families in their homes. The argument that "resistance arises because of occupation" is an explanation, not a justification. IHL applies regardless of the justness of the cause.</div>
-    </div>
-
-    <div class="card-row-label against-r2">&#x1F7E5; Round 2 &middot; PRO-PALESTINE Rebuttal</div>
-    <div class="stance-card against-rebuttal">
-      <div class="stance-header against-muted"><span class="stance-dot against-muted"></span> Pro-Palestine Rebuttal</div>
-      <div class="stance-content">Condemning specific tactics does not delegitimize an entire people's right to resistance. Israel has killed vastly more civilians &mdash; 40,000+ in Gaza since October 2023, corroborated by the Lancet and UN. The ICJ in January 2024 found plausible genocide. October 7 doesn't provide license for collective punishment. Palestinian resistance includes civil society and nonviolent movements systematically suppressed by Israel.</div>
-    </div>
-  </div>
-
-  <!-- Q5 -->
-  <div class="question-block reveal">
-    <div class="question-number">5</div>
-    <h3 class="question-text">Has the international community been fair and balanced?</h3>
-
-    <div class="card-row-label for-r1">&#x1F7E6; Round 1 &middot; PRO-ISRAEL Stance</div>
-    <div class="stance-card for-card">
-      <div class="stance-header for"><span class="stance-dot for"></span> Pro-Israel</div>
-      <div class="stance-content">Profoundly biased. The UNGA passes more resolutions against Israel than all other countries combined. The UNHRC maintains permanent Agenda Item 7 solely for Israel. UNRWA employs Hamas members. UNESCO erases Jewish connections to holy sites. ICJ panels include judges from states not recognizing Israel. The Durban Conference devolved into antisemitism. This systematic singling-out entrenches Palestinian maximalism.</div>
-    </div>
-
-    <div class="card-row-label against-r1">&#x1F7E5; Round 1 &middot; PRO-PALESTINE Stance</div>
-    <div class="stance-card against-card">
-      <div class="stance-header against"><span class="stance-dot against"></span> Pro-Palestine</div>
-      <div class="stance-content">The US has vetoed 50+ Security Council resolutions on Israel. Despite the ICJ ruling the wall illegal, Israel faces no sanctions. Compare to Iraq/Kuwait (military action) or Russia/Ukraine (sweeping sanctions) &mdash; the double standard is glaring. The US provides $3.8 billion annually in military aid. Palestinians negotiate with their occupier while that occupier's chief patron serves as sole mediator.</div>
-    </div>
-
-    <div class="round-separator"><div class="round-separator-line"></div><div class="round-separator-text">Round 2 &mdash; Rebuttals</div><div class="round-separator-line"></div></div>
-
-    <div class="card-row-label for-r2">&#x1F7E6; Round 2 &middot; PRO-ISRAEL Rebuttal</div>
-    <div class="stance-card for-rebuttal">
-      <div class="stance-header for-muted"><span class="stance-dot for-muted"></span> Pro-Israel Rebuttal</div>
-      <div class="stance-content">US vetoes one-sided resolutions &mdash; the UNGA passes more resolutions against Israel than all nations combined. Iraq/Ukraine involved unambiguous cross-border invasions of sovereign states. US aid reflects a strategic alliance; it also provides billions to Egypt, Jordan, and the PA. Palestinians repeatedly refused negotiations &mdash; walking away from Camp David, Taba, and the Olmert offers.</div>
-    </div>
-
-    <div class="card-row-label against-r2">&#x1F7E5; Round 2 &middot; PRO-PALESTINE Rebuttal</div>
-    <div class="stance-card against-rebuttal">
-      <div class="stance-header against-muted"><span class="stance-dot against-muted"></span> Pro-Palestine Rebuttal</div>
-      <div class="stance-content">The frequency of UN resolutions reflects the scale and duration of violations, not bias. South Africa made identical "bias" arguments during apartheid. The ICJ's 2004 opinion was near-unanimous (14-1). The 2024 opinion declaring the occupation illegal passed with overwhelming majority. The real question is not why so many condemn Israel, but why Israel enjoys such impunity despite this consensus.</div>
-    </div>
-  </div>
-
-  <!-- Q6 -->
-  <div class="question-block reveal">
-    <div class="question-number">6</div>
-    <h3 class="question-text">Is the two-state solution viable, and who bears responsibility for its failure?</h3>
-
-    <div class="card-row-label for-r1">&#x1F7E6; Round 1 &middot; PRO-ISRAEL Stance</div>
-    <div class="stance-card for-card">
-      <div class="stance-header for"><span class="stance-dot for"></span> Pro-Israel</div>
-      <div class="stance-content">Palestinian leadership repeatedly rejected concrete offers: 1937 Peel Commission, 1947 partition, 2000 Camp David (92% of West Bank), 2001 Taba, 2008 Olmert (93.7% with land swaps and Jerusalem). Abbas walked away without a counter-offer. Israel proved willingness by returning Sinai to Egypt. The pattern: Israel accepts territorial compromise, Palestinians choose rejection.</div>
-    </div>
-
-    <div class="card-row-label against-r1">&#x1F7E5; Round 1 &middot; PRO-PALESTINE Stance</div>
-    <div class="stance-card against-card">
-      <div class="stance-header against"><span class="stance-dot against"></span> Pro-Palestine</div>
-      <div class="stance-content">Israel bears overwhelming responsibility &mdash; settlers grew from 250,000 to 700,000 since Oslo. Every government expanded settlements. The current government includes ministers advocating annexation. Palestinians accepted two-state at enormous cost, conceding 78% of historic Palestine. The PLO recognized Israel in 1993 &mdash; never reciprocated with recognition of a Palestinian state. Settlement expansion killed the two-state solution.</div>
-    </div>
-
-    <div class="round-separator"><div class="round-separator-line"></div><div class="round-separator-text">Round 2 &mdash; Rebuttals</div><div class="round-separator-line"></div></div>
-
-    <div class="card-row-label for-r2">&#x1F7E6; Round 2 &middot; PRO-ISRAEL Rebuttal</div>
-    <div class="stance-card for-rebuttal">
-      <div class="stance-header for-muted"><span class="stance-dot for-muted"></span> Pro-Israel Rebuttal</div>
-      <div class="stance-content">At Camp David, Barak offered 92% + Gaza + Jerusalem capital &mdash; Arafat rejected without counter-offer. Olmert offered 93.7% with swaps &mdash; Abbas never responded. PLO recognition was paired with continued incitement and pay-for-slay. Oslo DID constitute mutual recognition. Hamas rejects Israel's existence entirely. Responsibility must be shared.</div>
-    </div>
-
-    <div class="card-row-label against-r2">&#x1F7E5; Round 2 &middot; PRO-PALESTINE Rebuttal</div>
-    <div class="stance-card against-rebuttal">
-      <div class="stance-header against-muted"><span class="stance-dot against-muted"></span> Pro-Palestine Rebuttal</div>
-      <div class="stance-content">The "generous offers" narrative has been dismantled by participants. Robert Malley confirmed no formal written offer at Camp David; the "92%" excluded East Jerusalem and Jordan Valley. Olmert's offer was never formalized, and he was under criminal indictment. Israel rejected the Arab Peace Initiative offering full normalization. Settlement construction never stopped during negotiations &mdash; actions speak louder than theater.</div>
-    </div>
-  </div>
-
-  <!-- Q7 -->
-  <div class="question-block reveal">
-    <div class="question-number">7</div>
-    <h3 class="question-text">How should the Palestinian refugee right of return be addressed?</h3>
-
-    <div class="card-row-label for-r1">&#x1F7E6; Round 1 &middot; PRO-ISRAEL Stance</div>
-    <div class="stance-card for-card">
-      <div class="stance-header for"><span class="stance-dot for"></span> Pro-Israel</div>
-      <div class="stance-content">The literal "right of return" for 5.9 million descendants is a demographic mechanism for Israel's elimination. UNRWA uniquely extends refugee status to all descendants perpetually &mdash; no other population has this. 850,000 Jews were expelled from Arab countries and absorbed with no agency. Resolution involves compensation and resettlement in a Palestinian state &mdash; not dissolution of Israel.</div>
-    </div>
-
-    <div class="card-row-label against-r1">&#x1F7E5; Round 1 &middot; PRO-PALESTINE Stance</div>
-    <div class="stance-card against-card">
-      <div class="stance-header against"><span class="stance-dot against"></span> Pro-Palestine</div>
-      <div class="stance-content">The right of return is enshrined in Resolution 194 and the Universal Declaration of Human Rights. 750,000 expelled in 1948, over 400 communities destroyed, descendants number 5.9 million. Israel's Law of Return grants any Jewish person worldwide citizenship while denying it to people born there. No peace is just if Palestinians must forfeit a right granted to every other refugee population.</div>
-    </div>
-
-    <div class="round-separator"><div class="round-separator-line"></div><div class="round-separator-text">Round 2 &mdash; Rebuttals</div><div class="round-separator-line"></div></div>
-
-    <div class="card-row-label for-r2">&#x1F7E6; Round 2 &middot; PRO-ISRAEL Rebuttal</div>
-    <div class="stance-card for-rebuttal">
-      <div class="stance-header for-muted"><span class="stance-dot for-muted"></span> Pro-Israel Rebuttal</div>
-      <div class="stance-content">Resolution 194 is a non-binding GA recommendation. Its "return and live at peace" condition was never met. No refugee population maintains status across 5 generations. 850,000 Jewish refugees are never mentioned. Israel's Law of Return exists because Jewish history proved Jews face genocide without guaranteed refuge. Two states means Palestinians return to Palestine, Jews to Israel.</div>
-    </div>
-
-    <div class="card-row-label against-r2">&#x1F7E5; Round 2 &middot; PRO-PALESTINE Rebuttal</div>
-    <div class="stance-card against-rebuttal">
-      <div class="stance-header against-muted"><span class="stance-dot against-muted"></span> Pro-Palestine Rebuttal</div>
-      <div class="stance-content">The "demographic mechanism" argument reveals ethno-nationalist logic: maintaining a Jewish majority justifies denying millions their legal rights. Jewish refugees deserve justice too, but don't cancel Palestinian rights. Palestinians remain refugees because return has been denied and no state created. Suggesting compensation as a substitute for return asks Palestinians to accept permanent ethnic cleansing.</div>
-    </div>
-  </div>
-
-  <!-- Q8 -->
-  <div class="question-block reveal">
-    <div class="question-number">8</div>
-    <h3 class="question-text">Are Israeli settlements a legitimate expression of sovereignty or a violation of international law?</h3>
-
-    <div class="card-row-label for-r1">&#x1F7E6; Round 1 &middot; PRO-ISRAEL Stance</div>
-    <div class="stance-card for-card">
-      <div class="stance-header for"><span class="stance-dot for"></span> Pro-Israel</div>
-      <div class="stance-content">The West Bank was never Palestinian sovereign territory. The Mandate encouraged Jewish settlement (Article 6). Geneva Convention Article 49(6) was drafted for forcible transfers like Nazi deportations, not voluntary civilian movement. Legal scholars like Eugene Rostow argued settlement rights exist. The question is a final-status negotiation issue, not settled law.</div>
-    </div>
-
-    <div class="card-row-label against-r1">&#x1F7E5; Round 1 &middot; PRO-PALESTINE Stance</div>
-    <div class="stance-card against-card">
-      <div class="stance-header against"><span class="stance-dot against"></span> Pro-Palestine</div>
-      <div class="stance-content">Settled law. Article 49 of the Geneva Convention prohibits transfers. The ICJ affirmed in 2004. UNSC Resolution 2334 declared settlements a "flagrant violation." Every country considers them illegal. 700,000+ settlers on confiscated land, strategically placed to make a contiguous Palestinian state physically impossible.</div>
-    </div>
-
-    <div class="round-separator"><div class="round-separator-line"></div><div class="round-separator-text">Round 2 &mdash; Rebuttals</div><div class="round-separator-line"></div></div>
-
-    <div class="card-row-label for-r2">&#x1F7E6; Round 2 &middot; PRO-ISRAEL Rebuttal</div>
-    <div class="stance-card for-rebuttal">
-      <div class="stance-header for-muted"><span class="stance-dot for-muted"></span> Pro-Israel Rebuttal</div>
-      <div class="stance-content">Article 49 addressed forcible transfers, not voluntary movement. Hebron's Jewish community predates Zionism (ethnically cleansed in 1929). The Levy Commission found the West Bank is not "occupied territory" in the classical sense. Israeli Supreme Court has removed illegal outposts. Settlements occupy ~2% of West Bank. There was no peace before 1967 when no settlements existed.</div>
-    </div>
-
-    <div class="card-row-label against-r2">&#x1F7E5; Round 2 &middot; PRO-PALESTINE Rebuttal</div>
-    <div class="stance-card against-rebuttal">
-      <div class="stance-header against-muted"><span class="stance-dot against-muted"></span> Pro-Palestine Rebuttal</div>
-      <div class="stance-content">If Jordan's occupation was illegal, Israel's is too &mdash; territory belongs to Palestinians pending self-determination. Israel's own legal counsel Theodor Meron concluded in 1967 that settlements violate international law; the memo was classified. Citing one dissenting voice against this consensus is like citing a climate denier against the IPCC. 300+ settlements while claiming the matter is "under negotiation" = running out the clock.</div>
-    </div>
-  </div>
-
-  <!-- Q9 -->
-  <div class="question-block reveal">
-    <div class="question-number">9</div>
-    <h3 class="question-text">What role does each side's governance play in the conflict?</h3>
-
-    <div class="card-row-label for-r1">&#x1F7E6; Round 1 &middot; PRO-ISRAEL Stance</div>
-    <div class="stance-card for-card">
-      <div class="stance-header for"><span class="stance-dot for"></span> Pro-Israel</div>
-      <div class="stance-content">Israel is the Middle East's only liberal democracy with independent judiciary, free press, and minority rights. Abbas is in the 19th year of a 4-year term. Hamas seized Gaza by force, runs an authoritarian regime, and diverts humanitarian aid to tunnels. Peace requires a partner capable of making and enforcing agreements &mdash; Palestinian governance failure is a central structural barrier.</div>
-    </div>
-
-    <div class="card-row-label against-r1">&#x1F7E5; Round 1 &middot; PRO-PALESTINE Stance</div>
-    <div class="stance-card against-card">
-      <div class="stance-header against"><span class="stance-dot against"></span> Pro-Palestine</div>
-      <div class="stance-content">Calling Israel a "democracy" is misleading when millions under its effective control cannot vote. Israel supported Hamas early on as a counterweight to the PLO. When Palestinians held elections in 2006 and Hamas won, the world rejected the results and imposed a blockade. Governance failures are a symptom of occupation, not its cause. No people can build institutions under military rule.</div>
-    </div>
-
-    <div class="round-separator"><div class="round-separator-line"></div><div class="round-separator-text">Round 2 &mdash; Rebuttals</div><div class="round-separator-line"></div></div>
-
-    <div class="card-row-label for-r2">&#x1F7E6; Round 2 &middot; PRO-ISRAEL Rebuttal</div>
-    <div class="stance-card for-rebuttal">
-      <div class="stance-header for-muted"><span class="stance-dot for-muted"></span> Pro-Israel Rebuttal</div>
-      <div class="stance-content">2+ million Arab citizens have full voting rights &mdash; calling Israel "not a democracy" insults them. The PA and Hamas govern Palestinians, not Israel. Abbas chose not to hold elections. "Supporting Hamas" distorts history &mdash; Israel permitted charities before Hamas became a terror group. Blaming occupation for all internal failures denies Palestinian agency.</div>
-    </div>
-
-    <div class="card-row-label against-r2">&#x1F7E5; Round 2 &middot; PRO-PALESTINE Rebuttal</div>
-    <div class="stance-card against-rebuttal">
-      <div class="stance-header against-muted"><span class="stance-dot against-muted"></span> Pro-Palestine Rebuttal</div>
-      <div class="stance-content">A democracy ruling over 5 million disenfranchised people is a democracy for some and a military dictatorship for others. Israel arrested elected Hamas legislators, imposed a siege on Gaza, and systematically weakened the PA. Netanyahu openly stated his strategy of bolstering Hamas to prevent unified Palestinian leadership. Blaming Palestinians for governance while controlling their tax revenue, borders, and movement is blaming the prisoner for the condition of the cell.</div>
-    </div>
-  </div>
-
-  <!-- Q10 -->
-  <div class="question-block reveal">
-    <div class="question-number">10</div>
-    <h3 class="question-text">What would a just and lasting peace look like?</h3>
-
-    <div class="card-row-label for-r1">&#x1F7E6; Round 1 &middot; PRO-ISRAEL Stance</div>
-    <div class="stance-card for-card">
-      <div class="stance-header for"><span class="stance-dot for"></span> Pro-Israel</div>
-      <div class="stance-content">Israel has consistently accepted two states, offered extensive compromises, and proved peace capacity with Egypt, Jordan, and the Abraham Accords. Vision: demilitarized Palestinian state, shared Jerusalem, refugee compensation, security arrangements. Peace requires Palestinian acceptance of Israel's permanent legitimacy, democratic institution-building, disarmament of terrorist factions, and mutual respect.</div>
-    </div>
-
-    <div class="card-row-label against-r1">&#x1F7E5; Round 1 &middot; PRO-PALESTINE Stance</div>
-    <div class="stance-card against-card">
-      <div class="stance-header against"><span class="stance-dot against"></span> Pro-Palestine</div>
-      <div class="stance-content">Just peace requires: full end of occupation, Palestinian statehood, refugee resolution per Resolution 194, equal rights for all. The PLO recognized Israel, accepted 22% of historic Palestine. The Arab Peace Initiative offered full normalization to the entire Arab world &mdash; Israel never responded. The Palestinian vision is rooted in international law. The status quo of permanent occupation offers neither justice nor peace.</div>
-    </div>
-
-    <div class="round-separator"><div class="round-separator-line"></div><div class="round-separator-text">Round 2 &mdash; Rebuttals</div><div class="round-separator-line"></div></div>
-
-    <div class="card-row-label for-r2">&#x1F7E6; Round 2 &middot; PRO-ISRAEL Rebuttal</div>
-    <div class="stance-card for-rebuttal">
-      <div class="stance-header for-muted"><span class="stance-dot for-muted"></span> Pro-Israel Rebuttal</div>
-      <div class="stance-content">Just peace can't require Israel's demographic destruction. PLO recognition was paired with continued violence glorification and pay-for-slay. The Arab Peace Initiative was a take-it-or-leave-it ultimatum with an unacceptable refugee clause. Israel proved land-for-peace with Sinai. Peace requires compromise from both sides &mdash; not one side's legal maximalism.</div>
-    </div>
-
-    <div class="card-row-label against-r2">&#x1F7E5; Round 2 &middot; PRO-PALESTINE Rebuttal</div>
-    <div class="stance-card against-rebuttal">
-      <div class="stance-header against-muted"><span class="stance-dot against-muted"></span> Pro-Palestine Rebuttal</div>
-      <div class="stance-content">Every Israeli proposal demanded: no Palestinian military, Israeli border control, settlement annexation, no 1967 lines, Israeli Jerusalem sovereignty &mdash; a Bantustan, not a state. The Abraham Accords sidelined Palestinians entirely. Senior Israeli ministers (Smotrich, Ben Gvir) openly advocate annexation. The Likud charter rejects Palestinian statehood. Peace requires Israel to end the occupation &mdash; not demand the occupied prove their worthiness.</div>
+    <div class="verdict-card neutral-v reveal">
+      <h3>Why the score landed at 38</h3>
+      <p>The FOR side presented real facts — security outcomes, democratic institutions, rejected offers, legitimate Hamas governance concerns. The AGAINST side more consistently engaged with primary legal instruments: actual text of Geneva Convention Article 49, actual ICJ 2024 ruling, actual Nation-State Law, UNSC resolutions passed with US support, and documentary evidence challenging the Camp David narrative.</p>
+      <p>The FOR side's two most-used arguments — Camp David rejection and Gaza withdrawal proving occupation is not the cause — were both substantially challenged with specific documentary evidence. The 38 score reflects that the FOR side made meaningful arguments that prevent a lower score, but the AGAINST side's legal and factual rebuttals were more grounded in primary sources and harder to dismiss.</p>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-logo">Debate Framework</div>
-  <p>Powered by Claude Code Multi-Agent Orchestrator &bull; March 20, 2026</p>
-  <p style="margin-top: 0.5rem; font-size: 0.7rem;">This debate was generated by AI agents for educational and analytical purposes.</p>
+<!-- ═══════════════════════════════════════════ FOOTER -->
+<footer>
+  <div class="container">
+    <p><strong>Debate: Israel vs Palestine</strong> &mdash; The Israeli-Palestinian Conflict</p>
+    <p style="margin-top:8px;">Date: 2026-03-20 &nbsp;|&nbsp; 10 Questions &nbsp;|&nbsp; 40 Cards &nbsp;|&nbsp; Conviction Score: 38 / 100</p>
+    <p style="margin-top:8px; font-size:0.75rem; opacity:0.5;">Generated by a multi-agent debate framework. Arguments represent structured advocacy positions, not the views of any individual or organization.</p>
+  </div>
 </footer>
 
 <script>
-  // Scroll reveal animation
+  // ── Gauge animation
+  function animateGauge() {
+    const score = 38;
+    const totalArc = 345.6; // circumference of semicircle (r=110, half circumference)
+    const midpoint = totalArc / 2; // 172.8 = 50% mark
+
+    // Score position along arc (0 = left/against, 100 = right/for)
+    const scorePos = (score / 100) * totalArc;
+
+    // Against (red) fills from 0 to scorePos
+    const againstFill = scorePos;
+    const againstOffset = totalArc - againstFill;
+
+    // For (blue) fills from scorePos to totalArc — but score < 50 so no blue
+    const forFill = Math.max(0, scorePos - midpoint);
+    const forOffset = totalArc - forFill;
+
+    // Needle angle: -90deg = left (0), 0deg = top (50), 90deg = right (100)
+    const needleAngle = ((score / 100) * 180) - 90;
+
+    setTimeout(() => {
+      document.getElementById('gauge-against').style.strokeDashoffset = againstOffset;
+      document.getElementById('gauge-for').style.strokeDashoffset = forOffset;
+      document.getElementById('gauge-needle').style.transform =
+        `rotate(${needleAngle}deg)`;
+    }, 300);
+  }
+
+  // ── Score bar animation
+  function animateScoreBar() {
+    setTimeout(() => {
+      document.getElementById('score-bar').style.width = '38%';
+    }, 400);
+  }
+
+  // ── Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal, .question-block').forEach(el => {
+    observer.observe(el);
+  });
 
-  // Animate score on scroll
-  const scoreSection = document.querySelector('.score-section');
-  const scoreDisplay = document.getElementById('scoreDisplay');
-  let scored = false;
-
-  const scoreObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !scored) {
-        scored = true;
-        animateScore(0, 35, 2000);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  scoreObserver.observe(scoreSection);
-
-  function animateScore(start, end, duration) {
-    const startTime = performance.now();
-    function update(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.round(start + (end - start) * eased);
-      scoreDisplay.textContent = current;
-      if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-  }
+  // Run gauge and bar on load
+  window.addEventListener('load', () => {
+    animateGauge();
+    animateScoreBar();
+  });
 </script>
 </body>
 </html>
